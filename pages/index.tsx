@@ -12,17 +12,24 @@ import shirt from "../public/products/shirt.png";
 const Home: NextPage = () => {
   return (
     <div className="h-full flex bg-black flex-col">
-      <header className="m-auto text-white text-center flex flex-col">
-        <nav className="flex flex-row justify-between p-2">
-          <Image alt="Basement" src={logo} />
+      <header className="m-auto text-white text-center flex flex-col p-4">
+        <nav className="flex flex-row justify-between p-2 items-center">
+          <div className="sm:block hidden">
+            <Image alt="Basement" src={logo} />
+          </div>
+          <div className="block sm:hidden">
+            <span className="text-4xl font-black">b.</span>
+          </div>
           <button className="border-2 py-2 uppercase font-bold px-6 rounded-full">Cart</button>
         </nav>
         <Image alt={"Basement Supply"} src={header} />
-        <span className="border-t border-b text-3xl font-bold py-1">
+      </header>
+      <section className="flex my-4">
+        <span className="border-t border-b text-3xl font-bold py-1 w-full">
           {"- A man can't have enough basement. swag"}
         </span>
-      </header>
-      <section className="flex flex-row max-w-screen-xl mx-auto gap-6">
+      </section>
+      <section className="sm:w-full flex justify-center content-center sm:flex-row max-w-screen-xl  gap-6 flex-col px-4">
         <Item description="Black t-shirt" price={7.95} product={shirt} />
         <Item description="Black hoodie" price={13} product={hoodie} />
         <Item description="Black cap" price={23} product={cap} />
