@@ -1,15 +1,21 @@
 import type {NextPage} from "next";
 import Image from "next/image";
+import {useEffect, useState} from "react";
 
 import Item from "../components/Item";
 import logo from "../public/logo.svg";
 import header from "../public/header.svg";
 import footer from "../public/footer.svg";
-import cap from "../public/products/cap.png";
-import hoodie from "../public/products/hoodie.png";
-import shirt from "../public/products/shirt.png";
+import {ProductType} from "../product/types";
+import {getProducts} from "../services/products";
 
 const Home: NextPage = () => {
+  const [products, setProducts] = useState<ProductType[]>([]);
+
+  useEffect(() => {
+    getProducts<ProductType[]>().then(setProducts);
+  }, []);
+
   return (
     <div className="h-full flex bg-black flex-col">
       <header className="m-auto text-white text-center flex flex-col p-4">
@@ -25,14 +31,19 @@ const Home: NextPage = () => {
         <Image alt={"Basement Supply"} src={header} />
       </header>
       <section className="flex my-4">
-        <span className="border-t border-b text-3xl font-bold py-1 w-full">
+        <span className="border-t border-b text-3xl font-bold py-1 w-full text-center">
           {"- A man can't have enough basement. swag"}
         </span>
       </section>
       <section className="sm:w-full flex justify-center content-center sm:flex-row max-w-screen-xl  gap-6 flex-col px-4">
-        <Item description="Black t-shirt" price={7.95} product={shirt} />
-        <Item description="Black hoodie" price={13} product={hoodie} />
-        <Item description="Black cap" price={23} product={cap} />
+        {products.map((product) => (
+          <Item
+            key={product.name}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+          />
+        ))}
       </section>
       <footer className="mx-auto">
         <Image alt={"Wear everyday"} src={footer} />
