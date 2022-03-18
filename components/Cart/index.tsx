@@ -12,12 +12,12 @@ interface Iprops {
 const getPrice = (item: CheckoutElementType): number => item.cant * item.product.price;
 
 export default function Cart({close, cart, updateCheckoutElement}: Iprops) {
-  const [total, setTotal] = useState<number>(0);
+  const [total, setTotal] = useState<string>("0");
 
   useEffect(() => {
     const total: number = cart.map(getPrice).reduce((prev, curr) => prev + curr);
 
-    setTotal(total);
+    setTotal(total.toLocaleString());
   }, [cart]);
 
   return (
