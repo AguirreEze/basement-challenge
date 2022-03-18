@@ -21,7 +21,7 @@ export default function Cart({close, cart, updateCheckoutElement}: Iprops) {
   }, [cart]);
 
   return (
-    <section className="absolute z-10 top-0 right-0 bg-black flex flex-col p-4 border-b w-full min-h-full">
+    <section className="absolute z-10 top-0 right-0 bg-black flex flex-col p-4 border-b border-l w-full max-w-xl min-h-full">
       <button className="ml-auto text-3xl uppercase font-bold" onClick={() => close(false)}>
         → close
       </button>
@@ -39,7 +39,12 @@ export default function Cart({close, cart, updateCheckoutElement}: Iprops) {
         <span>total</span>
         <span>${total}</span>
       </article>
-      <button className="text-6xl uppercase font-bold border-t p-2">checkout</button>
+      <button
+        className="text-6xl uppercase font-bold border-t p-2"
+        onClick={() => console.log("checkout")}
+      >
+        checkout
+      </button>
     </section>
   );
 }
