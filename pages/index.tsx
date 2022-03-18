@@ -8,9 +8,11 @@ import header from "../public/header.svg";
 import footer from "../public/footer.svg";
 import {ProductType} from "../product/types";
 import {getProducts} from "../services/products";
+import Cart from "../components/Cart";
 
 const Home: NextPage = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [showCart, setShowCart] = useState<boolean>(false);
 
   useEffect(() => {
     getProducts<ProductType[]>().then(setProducts);
@@ -18,6 +20,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="h-full flex bg-black flex-col">
+      {showCart && <Cart close={setShowCart} />}
       <header className="m-auto text-white text-center flex flex-col p-4">
         <nav className="flex flex-row justify-between p-2 items-center">
           <div className="sm:block hidden">
@@ -26,7 +29,12 @@ const Home: NextPage = () => {
           <div className="block sm:hidden">
             <span className="text-4xl font-black">b.</span>
           </div>
-          <button className="border-2 py-2 uppercase font-bold px-6 rounded-full">Cart</button>
+          <button
+            className="border-2 py-2 uppercase font-bold px-6 rounded-full"
+            onClick={() => setShowCart(true)}
+          >
+            Cart
+          </button>
         </nav>
         <Image alt={"Basement Supply"} src={header} />
       </header>
