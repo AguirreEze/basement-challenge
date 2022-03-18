@@ -1,8 +1,11 @@
+import {CheckoutElementType} from "../../product/types";
+
 interface Iprops {
   close: Function;
+  cart: CheckoutElementType[];
 }
 
-export default function Cart({close}: Iprops) {
+export default function Cart({close, cart}: Iprops) {
   const total = 0.0;
 
   return (
@@ -11,6 +14,11 @@ export default function Cart({close}: Iprops) {
         → close
       </button>
       <h2 className="text-9xl uppercase font-bold text-center select-none">cart</h2>
+      <ul>
+        {cart.map((elem) => (
+          <li key={elem.product.name}>{elem.product.name}</li>
+        ))}
+      </ul>
       <article className="flex justify-between text-bold text-3xl uppercase mt-auto">
         <span>total</span>
         <span>${total}</span>

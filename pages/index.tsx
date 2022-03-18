@@ -6,12 +6,13 @@ import Item from "../components/Item";
 import logo from "../public/logo.svg";
 import header from "../public/header.svg";
 import footer from "../public/footer.svg";
-import {ProductType} from "../product/types";
+import {CheckoutElementType, ProductType} from "../product/types";
 import {getProducts} from "../services/products";
 import Cart from "../components/Cart";
 
 const Home: NextPage = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [cart, setCart] = useState<CheckoutElementType[]>([]);
   const [showCart, setShowCart] = useState<boolean>(false);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="h-full flex bg-black flex-col">
-      {showCart && <Cart close={setShowCart} />}
+      {showCart && <Cart cart={cart} close={setShowCart} />}
       <header className="m-auto text-white text-center flex flex-col p-4">
         <nav className="flex flex-row justify-between p-2 items-center">
           <div className="sm:block hidden">
