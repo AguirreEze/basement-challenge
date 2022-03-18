@@ -1,3 +1,5 @@
+import {useEffect, useState} from "react";
+
 import {CheckoutElementType} from "../../product/types";
 import CartProduct from "../CartProduct";
 
@@ -7,8 +9,16 @@ interface Iprops {
   updateCheckoutElement: Function;
 }
 
+const getPrice = (item: CheckoutElementType): number => item.cant * item.product.price;
+
 export default function Cart({close, cart, updateCheckoutElement}: Iprops) {
-  const total = 0.0;
+  const [total, setTotal] = useState<number>(0);
+
+  useEffect(() => {
+    const total: number = cart.map(getPrice).reduce((prev, curr) => prev + curr);
+
+    setTotal(total);
+  }, [cart]);
 
   return (
     <section className="absolute z-10 top-0 right-0 bg-black flex flex-col p-4 border-b w-full min-h-full">
