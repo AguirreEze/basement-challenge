@@ -19,6 +19,12 @@ const Home: NextPage = () => {
     getProducts<ProductType[]>().then(setProducts);
   }, []);
 
+  const addItemToCart = (product: ProductType) => {
+    return cart.find((elem) => elem.product.name === product.name)
+      ? null
+      : setCart([...cart, {product, cant: 1}]);
+  };
+
   return (
     <div className="h-full flex bg-black flex-col">
       {showCart && <Cart cart={cart} close={setShowCart} />}
@@ -46,12 +52,7 @@ const Home: NextPage = () => {
       </section>
       <section className="w-full flex  sm:flex-row  gap-6 flex-col px-4">
         {products.map((product) => (
-          <Item
-            key={product.name}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-          />
+          <Item key={product.name} addItemToCart={addItemToCart} productData={product} />
         ))}
       </section>
       <footer className="mx-auto">
