@@ -35,7 +35,7 @@ const Home: NextPage = () => {
           {"- A man can't have enough basement. swag"}
         </span>
       </section>
-      <section className="sm:w-full flex justify-center content-center sm:flex-row max-w-screen-xl  gap-6 flex-col px-4">
+      <section className="w-full flex  sm:flex-row  gap-6 flex-col px-4">
         {products.map((product) => (
           <Item
             key={product.name}
