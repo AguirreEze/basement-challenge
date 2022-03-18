@@ -25,9 +25,19 @@ const Home: NextPage = () => {
       : setCart([...cart, {product, cant: 1}]);
   };
 
+  const updateCheckoutElement = (checkoutElement: CheckoutElementType) => {
+    const updatedCart = cart.map((e) =>
+      e.product.name === checkoutElement.product.name ? checkoutElement : e,
+    );
+
+    setCart(updatedCart);
+  };
+
   return (
     <div className="h-full flex bg-black flex-col">
-      {showCart && <Cart cart={cart} close={setShowCart} />}
+      {showCart && (
+        <Cart cart={cart} close={setShowCart} updateCheckoutElement={updateCheckoutElement} />
+      )}
       <header className="m-auto text-white text-center flex flex-col p-4">
         <nav className="flex flex-row justify-between p-2 items-center">
           <div className="sm:block hidden">

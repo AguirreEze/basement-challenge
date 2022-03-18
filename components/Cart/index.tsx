@@ -1,22 +1,28 @@
 import {CheckoutElementType} from "../../product/types";
+import CartProduct from "../CartProduct";
 
 interface Iprops {
   close: Function;
   cart: CheckoutElementType[];
+  updateCheckoutElement: Function;
 }
 
-export default function Cart({close, cart}: Iprops) {
+export default function Cart({close, cart, updateCheckoutElement}: Iprops) {
   const total = 0.0;
 
   return (
-    <section className="fixed z-10 inset-0 bg-black flex flex-col p-4">
+    <section className="absolute z-10 top-0 right-0 bg-black flex flex-col p-4 border-b w-full min-h-full">
       <button className="ml-auto text-3xl uppercase font-bold" onClick={() => close(false)}>
         → close
       </button>
       <h2 className="text-9xl uppercase font-bold text-center select-none">cart</h2>
-      <ul>
+      <ul className="flex flex-col gap-2 my-4">
         {cart.map((elem) => (
-          <li key={elem.product.name}>{elem.product.name}</li>
+          <CartProduct
+            key={elem.product.name}
+            checkoutElement={elem}
+            updateCheckoutElement={updateCheckoutElement}
+          />
         ))}
       </ul>
       <article className="flex justify-between text-bold text-3xl uppercase mt-auto">
