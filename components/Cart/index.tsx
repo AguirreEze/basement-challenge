@@ -15,7 +15,7 @@ export default function Cart({close, cart, updateCheckoutElement}: Iprops) {
   const [total, setTotal] = useState<string>("0");
 
   useEffect(() => {
-    const total: number = cart.map(getPrice).reduce((prev, curr) => prev + curr);
+    const total = cart.map(getPrice).reduce((prev, curr) => prev + curr);
 
     setTotal(total.toLocaleString());
   }, [cart]);

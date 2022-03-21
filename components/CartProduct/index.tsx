@@ -9,7 +9,7 @@ interface Iprops {
 
 export default function CartProduct({checkoutElement, updateCheckoutElement}: Iprops) {
   const handleMoreClick = () => {
-    const updatedElement: CheckoutElementType = {
+    const updatedElement = {
       ...checkoutElement,
       cant: checkoutElement.cant + 1,
     };
@@ -18,7 +18,7 @@ export default function CartProduct({checkoutElement, updateCheckoutElement}: Ip
   };
   const handleLessClick = () => {
     if (checkoutElement.cant === 1) return;
-    const updatedElement: CheckoutElementType = {
+    const updatedElement = {
       ...checkoutElement,
       cant: checkoutElement.cant - 1,
     };
